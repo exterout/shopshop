@@ -6,15 +6,16 @@ import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
 
 const ProductScreen = () => {
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
 
     const { id: productId } = useParams();
     useEffect(() =>{
       const fetchproduct = async () => {
-        const {data} = await axios.get(`/api/products/${productId}`);
+        const { data } = await axios.get(`/api/products/${productId}`);
         setProduct(data);
       }
-    })
+      fetchproduct();
+    },[])
   return (
     <>
       <Link className="btn btn-light my-3" to='/'>
